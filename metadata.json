@@ -2,7 +2,7 @@
 	"id": "AnAstuteAssortment",
 	"name": "An Astute Assortment",
 	"display_name": "An Astute Assortment",
-	"author": ["aaa147,ThunderEdge,CodeRevo"],
+	"author": ["aaa147","ThunderEdge","CodeRevo"],
 	"description": "",
 	"prefix": "asa",
 	"main_file": "main.lua",
