@@ -4,10 +4,9 @@ return {
             c_asa_crystals = {
                 name = "Crystals",
                 text = {
-                    "All {C:attention}Glass Cards{}",
-                    "destroyed this",
-                    "run are added back",
-                    "to your deck"
+                    "All {C:attention}Glass Cards{} destroyed",
+                    "{C:attention}by their own effect{} this",
+                    "run are added back to deck",
                 }
             },
         },
@@ -17,7 +16,7 @@ return {
                 text = {
                     "{C:attention}Randomizes{} the rank and suit",
                     "of all {C:attention}Playing Cards{}",
-                    "when sold."
+                    "when sold"
                 }
             },
             j_asa_bismuth = {
