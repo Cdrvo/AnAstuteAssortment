@@ -1,0 +1,14 @@
+{
+	"id": "AnAstuteAssortment",
+	"name": "An Astute Assortment",
+	"display_name": "An Astute Assortment",
+	"author": ["aaa147,ThunderEdge,CodeRevo"],
+	"description": "",
+	"prefix": "asa",
+	"main_file": "main.lua",
+	"priority": 0,
+	"badge_colour": "c7b24a",
+	"badge_text_colour": "9ad7fd",
+	"version": "0.0.0~Alpha",
+	"dependencies": []
+}
