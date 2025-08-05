@@ -549,7 +549,7 @@ SMODS.Joker({
 	cost = 7,
 	rarity = 2,
 	atlas = "asa_jokers",
-	pos = { x = 2, y = 3 },
+	pos = { x = 1, y = 3 },
 	blueprint_compat = false,
 	config = {
 		extra = {},
@@ -571,7 +571,7 @@ SMODS.Joker({
 	cost = 7,
 	rarity = 2,
 	atlas = "asa_jokers",
-	pos = { x = 3, y = 3 },
+	pos = { x = 2, y = 3 },
 	perishable_compat = false,
 	config = {
 		extra = {
