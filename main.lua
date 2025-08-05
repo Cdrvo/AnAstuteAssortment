@@ -12,6 +12,8 @@ SMODS.Atlas {
 }
 
 
+SMODS.optional_features.cardareas.unscored = true
+
 --Jokers
 
 SMODS.load_file("items/Jokers/common_jokers.lua")()
