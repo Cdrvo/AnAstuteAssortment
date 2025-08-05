@@ -11,6 +11,9 @@ return {
             },
         },
         Joker = {
+            --Common
+            --Uncommon
+            --Rare
             j_asa_scrambled_eggs = {
                 name = "Scrambled Eggs",
                 text = {
