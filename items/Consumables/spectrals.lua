@@ -94,3 +94,35 @@ SMODS.Consumable {
         SMODS.calculate_context({playing_card_added = true, cards = added})
     end
 }
+SMODS.Consumable {
+    key = "sage",
+    atlas = "asa_spectrals",
+    pos = {x = 2, y = 0},
+    set = "Spectral",
+    cost = 4,
+    loc_vars = function(self, info_queue, card)
+        table.insert(info_queue, G.P_CENTERS.e_foil)
+        table.insert(info_queue, G.P_CENTERS.e_holo)
+        table.insert(info_queue, G.P_CENTERS.e_polychrome)
+    end,
+    can_use = function(self, card)
+        return #G.playing_cards < G.GAME.starting_deck_size
+    end,
+    use = function(self, card, area, copier)
+        G.deck:change_size(G.GAME.starting_deck_size - #G.playing_cards)
+        local added = {}
+        for i = 1, G.GAME.starting_deck_size - #G.playing_cards do
+            local created = SMODS.add_card({
+                set = "Base",
+                area = G.deck,
+                edition = poll_edition("asa_sage", nil, true, true, {
+                    "e_foil",
+                    "e_holo",
+                    "e_polychrome"
+                })
+            })
+            table.insert(added, created)
+        end
+        SMODS.calculate_context({playing_card_added = true, cards = added})
+    end
+}

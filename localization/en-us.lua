@@ -17,7 +17,16 @@ return {
                     "Cards with random {C:attention}Seals{}",
                     "to your deck"
                 }
-            }
+            },
+            c_asa_sage = {
+                name = "Sage",
+                text = {
+                    "If your deck is below",
+                    "{C:attention}#1#{} cards, add {C:attention}#2#{} playing",
+                    "cards with random {C:attention}Editions{}",
+                    "to your deck"
+                }
+            },
         },
         Joker = {
             j_asa_scrambled_eggs = {
