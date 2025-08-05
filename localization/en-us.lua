@@ -32,7 +32,7 @@ return {
                 text = {
                     "Destroy {C:attention}#1#{} random card",
                     "in your hand and create",
-                    "{C:attention}#2# Gold 6s{}"
+                    "{C:attention}#2# Gold 6{}s"
                 }
             },
             c_asa_charm = {
@@ -40,7 +40,25 @@ return {
                 text = {
                     "Destroy {C:attention}#1#{} random card",
                     "in your hand and create",
-                    "{C:attention}#2# Lucky 7s{}"
+                    "{C:attention}#2# Lucky 7{}s"
+                }
+            },
+            c_asa_music = {
+                name = "Music",
+                text = {
+                    "Destroy {C:attention}all{} cards in",
+                    "your hand, and add",
+                    "{C:dark_edition}Foil{} or {C:dark_edition}Holographic{}",
+                    "to all Jokers"
+                }
+            },
+            c_asa_voodoo_doll = {
+                name = "Voodoo Doll",
+                text = {
+                    "Create a random {C:attention}face{}",
+                    "{C:attention}card{} with a random",
+                    "{C:attention}Enhancement{}, {C:attention}Seal{}",
+                    "and {C:attention}Edition{}"
                 }
             }
         },

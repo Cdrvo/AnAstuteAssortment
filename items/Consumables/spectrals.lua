@@ -14,15 +14,15 @@ SMODS.Enhancement:take_ownership("m_glass", {
                 rank = card.config.card.value,
                 suit = card.config.card.suit
             }
-            G.GAME.glass_broken[#G.GAME.glass_broken+1] = card_data
+            G.GAME.asa_glass_broken[#G.GAME.asa_glass_broken+1] = card_data
             return {remove = true}
         end
     end
 }, true)
 local start_run_hook = Game.start_run
-Game.start_run = function(self, args)
+function Game:start_run(args)
     start_run_hook(self, args)
-    G.GAME.glass_broken = G.GAME.glass_broken or {}
+    G.GAME.asa_glass_broken = G.GAME.asa_glass_broken or {}
 end
 SMODS.Consumable {
     key = "crystals",
@@ -75,7 +75,11 @@ SMODS.Consumable {
     cost = 4,
     loc_vars = function(self, info_queue, card)
         table.insert(info_queue, G.P_CENTERS.m_stone)
-        return {vars = {G.GAME.starting_deck_size, math.max(0, G.GAME.starting_deck_size - #G.playing_cards)}}
+        local n = 0
+        if G.GAME and G.GAME.starting_deck_size and G.playing_cards then
+            n = G.GAME.starting_deck_size - #G.playing_cards
+        end
+        return {vars = {G.GAME.starting_deck_size, math.max(0, n)}}
     end,
     can_use = function(self, card)
         return #G.playing_cards < G.GAME.starting_deck_size
@@ -106,7 +110,11 @@ SMODS.Consumable {
         table.insert(info_queue, G.P_CENTERS.e_foil)
         table.insert(info_queue, G.P_CENTERS.e_holo)
         table.insert(info_queue, G.P_CENTERS.e_polychrome)
-        return {vars = {G.GAME.starting_deck_size, math.max(0, G.GAME.starting_deck_size - #G.playing_cards)}}
+        local n = 0
+        if G.GAME and G.GAME.starting_deck_size and G.playing_cards then
+            n = G.GAME.starting_deck_size - #G.playing_cards
+        end
+        return {vars = {G.GAME.starting_deck_size, math.max(0, n)}}
     end,
     can_use = function(self, card)
         return #G.playing_cards < G.GAME.starting_deck_size
@@ -142,7 +150,7 @@ SMODS.Consumable {
         return {vars = {card.ability.extra.destroy, card.ability.extra.cards}}
     end,
     can_use = function(self, card)
-        return G.hand and #G.hand.cards > 1
+        return G.hand and #G.hand.cards >= 1
     end,
     use = function(self, card, area, copier)
         G.deck:change_size(card.ability.extra.cards - card.ability.extra.destroy)
@@ -174,7 +182,7 @@ SMODS.Consumable {
         return {vars = {card.ability.extra.destroy, card.ability.extra.cards}}
     end,
     can_use = function(self, card)
-        return G.hand and #G.hand.cards > 1
+        return G.hand and #G.hand.cards >= 1
     end,
     use = function(self, card, area, copier)
         G.deck:change_size(card.ability.extra.cards - card.ability.extra.destroy)
@@ -192,5 +200,97 @@ SMODS.Consumable {
             table.insert(added, created)
         end
         SMODS.calculate_context({playing_card_added = true, cards = added})
+    end
+}
+SMODS.Consumable {
+    key = "music",
+    atlas = "asa_spectrals",
+    pos = {x = 5, y = 0},
+    set = "Spectral",
+    cost = 4,
+    loc_vars = function(self, info_queue, card)
+        table.insert(info_queue, G.P_CENTERS.e_foil)
+        table.insert(info_queue, G.P_CENTERS.e_holo)
+    end,
+    can_use = function(self, card)
+        local jokers_available = false
+        if G.jokers then
+            for _, j in ipairs(G.jokers.cards) do
+                if not j.edition then
+                    jokers_available = true
+                end
+            end
+        end
+        return G.hand and #G.hand.cards >= 1 and jokers_available and not G.GAME.blind.in_blind
+    end,
+    use = function (self, card, area, copier)
+        SMODS.destroy_cards(G.hand.cards)
+        for _, j in ipairs(G.jokers.cards) do
+            if not j.edition then
+                j:set_edition(poll_edition("asa_music", nil, true, true, {"e_foil", "e_holo"}), true)
+            end
+        end
+    end
+}
+SMODS.Booster:take_ownership_by_kind("Standard", {
+    create_card = function(self, card, i)
+        if pseudorandom("asa_voodoo_spawn", 0, 999) < 3 then
+            local h = false
+            if G.pack_cards then
+                for index, value in ipairs(G.pack_cards.cards) do
+                    if value.config.center.key == "c_asa_voodoo_doll" then
+                        h = true
+                    end
+                end
+            end
+            print(h)
+            return {
+                set = "Spectral",
+                area = G.pack_cards,
+                skip_materialize = true,
+                key_append = "Standard",
+                key = "c_asa_voodoo_doll"
+            }
+        else
+            local _edition = poll_edition("Standard" .. G.GAME.round_resets.ante, 2, true)
+            local _seal = SMODS.poll_seal({mod = 10})
+            return {
+                set = "Playing Card",
+                edition = _edition,
+                seal = _seal,
+                area = G.pack_cards,
+                skip_materialize = true,
+                soulable = true,
+                key_append = "Standard"
+            }
+        end
+    end
+}, true)
+SMODS.Consumable {
+    key = "voodoo_doll",
+    atlas = "asa_spectrals",
+    pos = {x = 6, y = 0},
+    set = "Spectral",
+    cost = 4,
+    can_use = function(self, card)
+        return true
+    end,
+    hidden = true,
+    soul_set = "Playing Card",
+    soul_rate = 0.9,
+    use = function(self, card, area, copier)
+        G.deck:change_size(1)
+        local ranks = {"K","Q","J"}
+        local c = SMODS.add_card({
+            set = "Base",
+            key_append = "asa_voodoo_doll",
+            area = G.deck,
+            rank = pseudorandom_element(ranks, "asa_voodoo_doll"),
+            skip_materialize = true,
+            edition = poll_edition("asa_voodoo_doll", nil, true, true, {"e_foil","e_holo","e_polychrome"}),
+            seal = SMODS.poll_seal({guaranteed = true, type_key = "asa_altar"}),
+            enhancement = SMODS.poll_enhancement({guaranteed = true, type_key = "asa_altar"})
+        })
+        SMODS.calculate_context({playing_card_added = true, cards = {c}})
     end
 }
