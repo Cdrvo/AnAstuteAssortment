@@ -4,9 +4,11 @@ return {
 			c_asa_crystals = {
 				name = "Crystals",
 				text = {
-					"All {C:attention}Glass Cards{} destroyed",
-					"by their own effect this",
-					"run are added back to deck",
+					"Creates a random {C:attention}Glass Card{}",
+					"for every {C:attention}Glass Card{}",
+					"destroyed by its own",
+                    "effect this run",
+                    "{C:inactive}(Will create #1# cards){}"
 				},
 			},
 			c_asa_altar = {
@@ -64,6 +66,86 @@ return {
 		},
 		Joker = {
 			--Common
+            j_asa_mobius_strip = {
+                name = "Mobius Strip",
+                text = {
+                    "{C:attention}Straights{} can be made",
+                    "with {C:attention}Aces{} in the middle"
+                }
+            },
+            j_asa_celestial_sheet_music = {
+                name = "Celestial Sheet Music",
+                text = {
+                    "After {C:attention}#1#{} {C:planet}Planet{} cards",
+                    "are used, this Joker",
+                    "levels up your {C:attention}most{}",
+                    "{C:attention}played{} poker hand twice",
+                    "and {C:red,E:2}self-destructs{} afterwards",
+                    "{C:inactive}(Currently #2# cards used){}"
+                }
+            },
+            j_asa_tuplets = {
+                name = "Tuplets",
+                text = {
+                    "Each played {C:attention}3{}, {C:attention}5{}, {C:attention}6{},",
+                    "{C:attention}7{}, {C:attention}9{} or {C:attention}10{} gives either",
+                    "{C:chips}+#1#{} Chips, {C:mult}+#2#{} Mult",
+                    "or {C:money}$#3#{} when scored"
+                }
+            },
+            j_asa_time_sig = {
+                name = "Time Signature",
+                text = {
+                    "{C:green}#1# in #2#{} chance to",
+                    "retrigger each played",
+                    "{C:attention}7{} and {C:attention}4{} when scored"
+                }
+            },
+            j_asa_measure = {
+                name = "Measure",
+                text = {
+                    "{C:chips}+#1#{} Chips if the {C:attention}rightmost{}",
+                    "played card is a scoring {C:attention}7{}"
+                }
+            },
+            j_asa_first_dollar = {
+                name = "My First Dollar",
+                text = {
+                    "If played hand is a",
+                    "single {C:attention}Ace{}, make it a",
+                    "{C:attention}Lucky Card{} and earn {C:money}$#1#{}"
+                }
+            },
+            j_asa_indef_article = {
+                name = "Indefinite Article",
+                text = {
+                    "If played hand contains",
+                    "an unscoring {C:attention}Ace{}, then",
+                    "retrigger all played",
+                    "scoring cards {C:attention}#1#{}",
+                    "additional time"
+                }
+            },
+            j_asa_tenner = {
+                name = "Tenner",
+                text = {
+                    "{C:green}#1# in #2#{} chance for played",
+                    "scoring {C:attention}10{}s to give {C:money}$#3#{}",
+                    "{C:green}#4# in #5#{} chance for played",
+                    "scoring {C:attention}10{}s to become",
+                    "{C:attention}Lucky Cards{}"
+                }
+            },
+            j_asa_stick_shift = {
+                name = "Stick Shift",
+                text = {
+                    "Earn {C:money}$#1#{} each time a",
+                    "{C:attention}unique{} poker hand has",
+                    "been played this round",
+                    "Lose {C:money}$#2#{} when a {C:attention}repeat{}",
+                    "hand is played this round"
+                }
+            },
 			--Uncommon
 			j_asa_spare_shoes = {
 				name = "Spare Shoes",

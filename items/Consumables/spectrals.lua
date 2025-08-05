@@ -14,7 +14,7 @@ SMODS.Enhancement:take_ownership("m_glass", {
                 rank = card.config.card.value,
                 suit = card.config.card.suit
             }
-            G.GAME.asa_glass_broken[#G.GAME.asa_glass_broken+1] = card_data
+            G.GAME.asa_glass_broken = G.GAME.asa_glass_broken + 1
             return {remove = true}
         end
     end
@@ -22,7 +22,7 @@ SMODS.Enhancement:take_ownership("m_glass", {
 local start_run_hook = Game.start_run
 function Game:start_run(args)
     start_run_hook(self, args)
-    G.GAME.asa_glass_broken = G.GAME.asa_glass_broken or {}
+    G.GAME.asa_glass_broken = G.GAME.asa_glass_broken or 0
 end
 
 
@@ -36,15 +36,15 @@ SMODS.Consumable {
         table.insert(info_queue, G.P_CENTERS.m_glass)
     end,
     in_pool = function(self, args)
-        return next(G.GAME.asa_glass_broken) ~= nil
+        return G.GAME.asa_glass_broken > 0
     end,
     can_use = function(self, card)
-        return next(G.GAME.asa_glass_broken) ~= nil
+        return G.GAME.asa_glass_broken > 0
     end,
     use = function(self, card, area, copier)
-        G.deck:change_size(#G.GAME.asa_glass_broken)
+        G.deck:change_size(G.GAME.asa_glass_broken)
         local all_restored = {}
-        for i, glass in pairs(G.GAME.asa_glass_broken) do
+        for i = 1, G.GAME.asa_glass_broken do
             -- G.playing_card = (G.playing_card and (G.playing_card + 1)) or 1
             -- local copy = copy_card(glass, nil, nil, G.playing_card)
             -- copy:add_to_deck()
@@ -57,16 +57,14 @@ SMODS.Consumable {
                 area = G.deck,
                 skip_materialize = true,
                 key_append = "asa_crystals",
-                edition = glass.edition,
                 enhancement = "m_glass",
-                seal = glass.seal,
-                rank = glass.rank,
-                suit = glass.suit
+                edition = poll_edition("asa_crystals", nil, true, false, {"e_foil", "e_holo", "e_polychrome"}),
+                seal = SMODS.poll_seal({type_key = "asa_crystals"})
             })
             table.insert(all_restored, restored)
         end
         SMODS.calculate_context({playing_card_added = true, cards = all_restored})
-        G.GAME.glass_broken = {}
+        G.GAME.asa_glass_broken = 0
     end
 }
 SMODS.Consumable {
