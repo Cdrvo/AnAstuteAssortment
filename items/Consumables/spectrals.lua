@@ -1,6 +1,6 @@
 local remove_hook = Card.remove
 Card.remove = function(self)
-    if SMODS.has_enhancement(self, "m_glass") and SMODS. then
+    if SMODS.has_enhancement(self, "m_glass") then
         G.GAME.glass_broken[#G.GAME.glass_broken+1] = self
         print(#G.GAME.glass_broken)
     end

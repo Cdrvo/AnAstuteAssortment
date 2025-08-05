@@ -56,7 +56,19 @@ SMODS.Joker({
 	pos = { x = 3, y = 3 },
 	rarity = 3,
 	eternal_compat = true,
+    config = {
+        extra = {
+            xmult = 2
+        }
+    },
+	loc_vars = function(self, info_queue, card)
+		local asa = card.ability.extra
+		return {
+			vars = { asa.xmult },
+		}
+	end,
 	calculate = function(self, card, context)
+        local asa = card.ability.extra
 		if context.before then
             card.asa_trigger = nil
 
@@ -88,7 +100,7 @@ SMODS.Joker({
         if context.individual and context.cardarea == G.play and card.asa_trigger then
             if context.other_card:get_id() == 12 then
                 return{
-                    xmult = 2
+                    xmult = asa.xmult
                 }
             end
         end
@@ -110,6 +122,12 @@ SMODS.Joker({
 			xmult = 1.4,
 		},
 	},
+	loc_vars = function(self, info_queue, card)
+		local asa = card.ability.extra
+		return {
+			vars = { asa.xmult },
+		}
+	end,
 	calculate = function(self, card, context)
 		local asa = card.ability.extra
 		if context.individual and context.cardarea == G.play then
@@ -121,10 +139,12 @@ SMODS.Joker({
 		end
 	end,
     update = function(self, card, context)
+    if G and G.playing_cards then
         for k, v in pairs(G.playing_cards) do
             if SMODS.has_enhancement(v, "m_wild") and v.debuff then
                 v:set_debuff(false)
             end
         end
-    end,
+    end
+end
 })
