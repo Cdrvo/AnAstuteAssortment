@@ -36,15 +36,15 @@ SMODS.Consumable {
         table.insert(info_queue, G.P_CENTERS.m_glass)
     end,
     in_pool = function(self, args)
-        return next(G.GAME.glass_broken) ~= nil
+        return next(G.GAME.asa_glass_broken) ~= nil
     end,
     can_use = function(self, card)
-        return next(G.GAME.glass_broken) ~= nil
+        return next(G.GAME.asa_glass_broken) ~= nil
     end,
     use = function(self, card, area, copier)
-        G.deck:change_size(#G.GAME.glass_broken)
+        G.deck:change_size(#G.GAME.asa_glass_broken)
         local all_restored = {}
-        for i, glass in pairs(G.GAME.glass_broken) do
+        for i, glass in pairs(G.GAME.asa_glass_broken) do
             -- G.playing_card = (G.playing_card and (G.playing_card + 1)) or 1
             -- local copy = copy_card(glass, nil, nil, G.playing_card)
             -- copy:add_to_deck()
@@ -223,7 +223,7 @@ SMODS.Consumable {
                 end
             end
         end
-        return G.hand and #G.hand.cards >= 1 and jokers_available and not G.GAME.blind.in_blind
+        return G.hand and #G.hand.cards >= 1 and jokers_available
     end,
     use = function (self, card, area, copier)
         SMODS.destroy_cards(G.hand.cards)
