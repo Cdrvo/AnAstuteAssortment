@@ -27,6 +27,22 @@ return {
                     "to your deck"
                 }
             },
+            c_asa_pentagram = {
+                name = "Pentagram",
+                text = {
+                    "Destroy {C:attention}#1#{} random card",
+                    "in your hand and create",
+                    "{C:attention}#2# Gold 6s{}"
+                }
+            },
+            c_asa_charm = {
+                name = "Charm",
+                text = {
+                    "Destroy {C:attention}#1#{} random card",
+                    "in your hand and create",
+                    "{C:attention}#2# Lucky 7s{}"
+                }
+            }
         },
         Joker = {
             j_asa_scrambled_eggs = {

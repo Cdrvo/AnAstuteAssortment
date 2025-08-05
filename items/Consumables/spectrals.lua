@@ -75,6 +75,7 @@ SMODS.Consumable {
     cost = 4,
     loc_vars = function(self, info_queue, card)
         table.insert(info_queue, G.P_CENTERS.m_stone)
+        return {vars = {G.GAME.starting_deck_size, math.max(0, G.GAME.starting_deck_size - #G.playing_cards)}}
     end,
     can_use = function(self, card)
         return #G.playing_cards < G.GAME.starting_deck_size
@@ -86,6 +87,7 @@ SMODS.Consumable {
             local created = SMODS.add_card({
                 set = "Base",
                 area = G.deck,
+                skip_materialize = true,
                 seal = SMODS.poll_seal({guaranteed = true, type_key = "asa_altar"}),
                 enhancement = "m_stone"
             })
@@ -104,6 +106,7 @@ SMODS.Consumable {
         table.insert(info_queue, G.P_CENTERS.e_foil)
         table.insert(info_queue, G.P_CENTERS.e_holo)
         table.insert(info_queue, G.P_CENTERS.e_polychrome)
+        return {vars = {G.GAME.starting_deck_size, math.max(0, G.GAME.starting_deck_size - #G.playing_cards)}}
     end,
     can_use = function(self, card)
         return #G.playing_cards < G.GAME.starting_deck_size
@@ -115,11 +118,76 @@ SMODS.Consumable {
             local created = SMODS.add_card({
                 set = "Base",
                 area = G.deck,
+                skip_materialize = true,
                 edition = poll_edition("asa_sage", nil, true, true, {
                     "e_foil",
                     "e_holo",
                     "e_polychrome"
                 })
+            })
+            table.insert(added, created)
+        end
+        SMODS.calculate_context({playing_card_added = true, cards = added})
+    end
+}
+SMODS.Consumable {
+    key = "pentagram",
+    atlas = "asa_spectrals",
+    pos = {x = 3, y = 0},
+    set = "Spectral",
+    cost = 4,
+    config = {extra = {destroy = 1, cards = 3}},
+    loc_vars = function(self, info_queue, card)
+        table.insert(info_queue, G.P_CENTERS.m_gold)
+        return {vars = {card.ability.extra.destroy, card.ability.extra.cards}}
+    end,
+    can_use = function(self, card)
+        return G.hand and #G.hand.cards > 1
+    end,
+    use = function(self, card, area, copier)
+        G.deck:change_size(card.ability.extra.cards - card.ability.extra.destroy)
+        local card_to_destroy = pseudorandom_element(G.hand.cards, "asa_pentagram_destroy")
+        SMODS.destroy_cards(card_to_destroy)
+        local added = {}
+        for i = 1, card.ability.extra.cards do
+            local created = SMODS.add_card({
+                set = "Base",
+                area = G.hand,
+                skip_materialize = true,
+                rank = "6",
+                enhancement = "m_gold"
+            })
+            table.insert(added, created)
+        end
+        SMODS.calculate_context({playing_card_added = true, cards = added})
+    end
+}
+SMODS.Consumable {
+    key = "charm",
+    atlas = "asa_spectrals",
+    pos = {x = 4, y = 0},
+    set = "Spectral",
+    cost = 4,
+    config = {extra = {destroy = 1, cards = 3}},
+    loc_vars = function(self, info_queue, card)
+        table.insert(info_queue, G.P_CENTERS.m_lucky)
+        return {vars = {card.ability.extra.destroy, card.ability.extra.cards}}
+    end,
+    can_use = function(self, card)
+        return G.hand and #G.hand.cards > 1
+    end,
+    use = function(self, card, area, copier)
+        G.deck:change_size(card.ability.extra.cards - card.ability.extra.destroy)
+        local card_to_destroy = pseudorandom_element(G.hand.cards, "asa_pentagram_destroy")
+        SMODS.destroy_cards(card_to_destroy)
+        local added = {}
+        for i = 1, card.ability.extra.cards do
+            local created = SMODS.add_card({
+                set = "Base",
+                area = G.hand,
+                skip_materialize = true,
+                rank = "7",
+                enhancement = "m_lucky"
             })
             table.insert(added, created)
         end
