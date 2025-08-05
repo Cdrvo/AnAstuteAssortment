@@ -67,3 +67,30 @@ SMODS.Consumable {
         G.GAME.glass_broken = {}
     end
 }
+SMODS.Consumable {
+    key = "altar",
+    atlas = "asa_spectrals",
+    pos = {x = 1, y = 0},
+    set = "Spectral",
+    cost = 4,
+    loc_vars = function(self, info_queue, card)
+        table.insert(info_queue, G.P_CENTERS.m_stone)
+    end,
+    can_use = function(self, card)
+        return #G.playing_cards < G.GAME.starting_deck_size
+    end,
+    use = function(self, card, area, copier)
+        G.deck:change_size(G.GAME.starting_deck_size - #G.playing_cards)
+        local added = {}
+        for i = 1, G.GAME.starting_deck_size - #G.playing_cards do
+            local created = SMODS.add_card({
+                set = "Base",
+                area = G.deck,
+                seal = SMODS.poll_seal({guaranteed = true, type_key = "asa_altar"}),
+                enhancement = "m_stone"
+            })
+            table.insert(added, created)
+        end
+        SMODS.calculate_context({playing_card_added = true, cards = added})
+    end
+}

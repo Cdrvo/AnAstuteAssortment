@@ -5,10 +5,19 @@ return {
                 name = "Crystals",
                 text = {
                     "All {C:attention}Glass Cards{} destroyed",
-                    "{C:attention}by their own effect{} this",
+                    "by their own effect this",
                     "run are added back to deck",
                 }
             },
+            c_asa_altar = {
+                name = "Altar",
+                text = {
+                    "If your deck is below",
+                    "{C:attention}#1#{} cards, add {C:attention}#2# Stone{}",
+                    "Cards with random {C:attention}Seals{}",
+                    "to your deck"
+                }
+            }
         },
         Joker = {
             j_asa_scrambled_eggs = {
