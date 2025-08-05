@@ -47,6 +47,12 @@ SMODS.Joker({
 			end
 		end
 	end,
+	in_pool = function(self,wawa,wawa2)
+		if ASA.check_enhancement(G.playing_cards,"m_stone") > 0 then
+			return true
+		end
+		return false
+	end
 })
 
 SMODS.Joker({
@@ -146,5 +152,11 @@ SMODS.Joker({
             end
         end
     end
-end
+end,
+	in_pool = function(self,wawa,wawa2)
+		if ASA.check_enhancement(G.playing_cards,"m_wild") > 0 then
+			return true
+		end
+		return false
+	end
 })

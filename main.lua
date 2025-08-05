@@ -35,6 +35,19 @@ function ASA.find_highest(area)
     return {low, card}
 end
 
+function ASA.check_enhancement(area, enhancement)
+	local blss = 0
+	if area and type(area) == "table" then
+		for _, v in pairs(area) do
+			if SMODS.has_enhancement(v, enhancement) then
+				blss = blss + 1
+			end
+		end
+		return blss
+	end
+	return 0
+end
+
 
 --Jokers
 SMODS.load_file("items/Jokers/common_jokers.lua")()
