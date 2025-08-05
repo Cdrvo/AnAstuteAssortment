@@ -11,6 +11,8 @@ G.start_run = function(self, args)
     start_run_hook(self, args)
     G.GAME.glass_broken = G.GAME.glass_broken or {}
 end
+
+
 SMODS.Consumable {
     key = "crystals",
     atlas = "asa_spectrals",
