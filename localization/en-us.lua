@@ -15,18 +15,22 @@ return {
 				name = "Altar",
 				text = {
 					"If your deck is below",
-					"{C:attention}#1#{} cards, add {C:attention}#2# Stone{}",
-					"Cards with random {C:attention}Seals{}",
-					"to your deck",
+					"{C:attention}#1#{} cards, add {C:attention}Stone{}",
+					"{C:attention}Cards{} with random {C:attention}Seals{}",
+					"to your deck until",
+					"your deck has {C:attention}#1#{} cards",
+					"{C:inactive}(Will add {C:attention}#2#{C:inactive} cards){}"
 				},
 			},
 			c_asa_sage = {
 				name = "Sage",
 				text = {
 					"If your deck is below",
-					"{C:attention}#1#{} cards, add {C:attention}#2#{} playing",
+					"{C:attention}#1#{} cards, add playing",
 					"cards with random {C:attention}Editions{}",
-					"to your deck",
+					"to your deck until",
+					"your deck has {C:attention}#1#{} cards",
+					"{C:inactive}(Will add {C:attention}#2#{C:inactive} cards){}"
 				},
 			},
 			c_asa_pentagram = {
