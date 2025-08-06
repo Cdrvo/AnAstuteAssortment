@@ -49,7 +49,7 @@ SMODS.Joker {
                         most_played_hand = handname
                     end
                 end
-                level_up_hand(nil, most_played_hand, nil, 2)
+                ASA.level_up_hand(most_played_hand, 2)
                 SMODS.destroy_cards(card)
             end
         end
