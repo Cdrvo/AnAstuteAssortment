@@ -205,13 +205,13 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.before then
             for _, c in ipairs(context.scoring_hand) do
-                if SMODS.pseudorandom_probability(card, "asa_tenner", 1, card.ability.extra.lucky_odds, "tenner_lucky") then
+                if SMODS.pseudorandom_probability(card, "asa_tenner", 1, card.ability.extra.lucky_odds, "tenner_lucky") and c:get_id() == 10 then
                     c:set_ability("m_lucky")
                 end
             end
         end
         if context.individual and context.cardarea == G.play then
-            if SMODS.pseudorandom_probability(card, "asa_tenner", 1, card.ability.extra.money_odds, "tenner_lucky") then
+            if SMODS.pseudorandom_probability(card, "asa_tenner", 1, card.ability.extra.money_odds, "tenner_lucky") and context.other_card:get_id() == 10 then
                 return {
                     dollars = card.ability.extra.dollars
                 }
