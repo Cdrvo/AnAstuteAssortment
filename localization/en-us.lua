@@ -74,7 +74,8 @@ return {
                 name = "Mobius Strip",
                 text = {
                     "{C:attention}Straights{} can be made",
-                    "with {C:attention}Aces{} in the middle"
+                    "with {C:attention}Aces{} in the middle",
+					"{C:inactive}(Ex: Q K A 2 3)"
                 }
             },
             j_asa_celestial_sheet_music = {
