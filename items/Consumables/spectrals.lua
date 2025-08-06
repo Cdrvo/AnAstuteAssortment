@@ -34,6 +34,7 @@ SMODS.Consumable {
     cost = 4,
     loc_vars = function(self, info_queue, card)
         table.insert(info_queue, G.P_CENTERS.m_glass)
+        return {vars = {(G.GAME and G.GAME.asa_glass_broken) or 0}}
     end,
     in_pool = function(self, args)
         return G.GAME.asa_glass_broken > 0
