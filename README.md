@@ -12,40 +12,41 @@ Secondly: this mod features 28 new Jokers and 7 new Spectral cards for Balatro. 
 
 There's too many to list them all here, but some highlights include:
 
-<img width="710" height="950" alt="MobiusStrip" src="https://github.com/user-attachments/assets/d2f93a92-2042-48c0-8c01-b486c89302e6" />
+<img width="138" height="186" alt="image" src="https://github.com/user-attachments/assets/2df64557-4f9b-4465-87ff-61beafa0c01a" />
 
 Mobius Strip - Common
   Straights can be made with Aces in the middle
   (ex: 3 2 A K Q)
 
-<img width="710" height="950" alt="Attorney" src="https://github.com/user-attachments/assets/912fccd7-ea99-4b07-a3cc-719ef1f30ddc" />
+<img width="138" height="186" alt="image" src="https://github.com/user-attachments/assets/94a446df-f311-49aa-8469-ff40d1894672" />
+
 
 Attorney - Uncommon
   When hand is played, +44 chips if there are more hands
   or X1.5 Mult if there are more discards
 
 
-<img width="710" height="950" alt="MyFirstDollar" src="https://github.com/user-attachments/assets/c4c6a35d-4975-4000-8693-3942d860c515" />
+<img width="139" height="186" alt="image" src="https://github.com/user-attachments/assets/412864d8-bca8-469d-9fd3-75d033f4bfd9" />
 
 My First Dollar - Common
   If played hand is a single Ace, make it a Lucky card and gain $1
 
-<img width="710" height="950" alt="ThePowerOf7" src="https://github.com/user-attachments/assets/5436b377-6ec3-4c6e-96c1-12b452c096ee" />
+<img width="138" height="186" alt="image" src="https://github.com/user-attachments/assets/1d4913ee-4dd1-415f-bd6c-0dd318d0a306" />
 
 The Power of 7 - Uncommon
   Creates a Spectral card every 7 hands played that have at least 1 scoring 7
-
-<img width="710" height="950" alt="Check" src="https://github.com/user-attachments/assets/e5af9067-a881-4aea-92bb-088af954be34" />
+  
+<img width="138" height="186" alt="image" src="https://github.com/user-attachments/assets/7dadda98-4a18-43cc-8a6d-ed19792485ce" />
 
 Check - Rare
   Queens give X2 Mult when scored if played hand contains a non-scoring King
 
-<img width="710" height="950" alt="Crystals" src="https://github.com/user-attachments/assets/0a77cd63-c9fe-4240-a82b-2b24e98407dc" />
+<img width="126" height="186" alt="image" src="https://github.com/user-attachments/assets/1e2f6489-4f79-475d-b2a7-8a3d9ae249ab" />
 
 Crystals - Spectral
   Gives you Glass cards of random rank and suit equal to the amount of Glass cards you have broken
 
-  <img width="710" height="950" alt="Music" src="https://github.com/user-attachments/assets/ebe485bf-b9c2-4170-aec5-b130fca5d17a" />
+<img width="126" height="186" alt="image" src="https://github.com/user-attachments/assets/8d2188cb-d821-44cf-9d24-822e2c9dd782" />
 
 Music - Spectral
   Destroy all cards held in hand, but add Foil or Holographic to all of your Jokers
@@ -53,3 +54,4 @@ Music - Spectral
 
 
   somewhere in the heavens...they are waiting
+
