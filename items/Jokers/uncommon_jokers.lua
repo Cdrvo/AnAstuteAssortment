@@ -8,7 +8,7 @@ SMODS.Joker({
 	config = {
 		extra = {
 			chips = 0,
-			chipg = 2,
+			chipg = 3,
 		},
 	},
 	loc_vars = function(self, info_queue, card)
@@ -456,7 +456,7 @@ SMODS.Joker({
 	config = {
 		extra = {
 			mult = 0,
-			multg = 4,
+			multg = 3,
 			eis = 0,
 		},
 	},
@@ -578,9 +578,10 @@ SMODS.Joker({
 	config = {
 		extra = {
 			xmult = 1,
-			xmultg = 0.15,
+			xmultg = 0.1,
 		},
 	},
+	blueprint_compat = true,
 	loc_vars = function(self, info_queue, card)
 		local asa = card.ability.extra
 		return {
@@ -593,7 +594,7 @@ SMODS.Joker({
 
 	calculate = function(self, card, context)
 		local asa = card.ability.extra
-		if context.setting_blind and G.GAME.blind.boss then
+		if context.setting_blind and G.GAME.blind.boss and not context.blueprint then
 			local jacks = 0
 			for k, v in pairs(G.playing_cards) do
 				if v:get_id() == 11 then
@@ -692,7 +693,7 @@ SMODS.Joker({
 		else
 			return nil
 		end
-		if context.end_of_round and context.main_eval and not context.blueprint then
+		if context.after and not context.blueprint then
 			if asa.timer > 1 then
 				asa.timer = asa.timer - 1
 			else
