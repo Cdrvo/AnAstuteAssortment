@@ -135,10 +135,12 @@ SMODS.Joker({
 					end
 					if card.asa_trigger then
 						for k, v in pairs(context.scoring_hand) do
+						if v ~= context.scoring_hand[1] and v ~= context.scoring_hand[#context.scoring_hand] then
 							v:juice_up()
 							v:set_ability("m_glass")
 						end
 					end
+				end
 					return true
 				end,
 			}))

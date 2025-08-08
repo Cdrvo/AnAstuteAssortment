@@ -182,7 +182,8 @@ return {
 				text = {
 					"If played hand contains a scoring",
 					"leftmost {C:attention}Ace{} and a rightmost {C:attention}2",
-					"all playing cards become {C:attention}Glass{}",
+					"all the other cards",
+					"become {C:attention}Glass{}"
 				},
 			},
 			j_asa_attorney = {
