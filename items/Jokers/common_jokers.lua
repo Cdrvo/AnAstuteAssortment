@@ -9,12 +9,9 @@ SMODS.Joker {
 local get_straight_hook = get_straight
 function get_straight(hand)
     local has_ff = (next(SMODS.find_card("j_four_fingers")) and 4) or 5
-    local has_sc = next(SMODS.find_card("j_shortcut"))
-    if next(SMODS.find_card("j_asa_mobius_strip")) then
-        return get_straight_hook(hand, has_ff, has_sc, true)
-    else
-        return get_straight_hook(hand)
-    end
+    local has_sc = next(SMODS.find_card("j_shortcut")) ~= nil
+    local has_ms = next(SMODS.find_card("j_asa_mobius_strip")) ~= nil
+    return get_straight_hook(hand, has_ff, has_sc, has_ms)
 end
 SMODS.Joker {
     key = "celestial_sheet_music",
