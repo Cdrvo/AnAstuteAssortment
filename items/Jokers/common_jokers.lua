@@ -90,14 +90,14 @@ SMODS.Joker {
     rarity = 1,
     cost = 4,
     blueprint_compat = true,
-    config = {extra = {denom_odds = 7}},
+    config = {extra = {num_odds = 4, denom_odds = 7}},
     loc_vars = function(self, info_queue, card)
-        local n, d = SMODS.get_probability_vars(card, (G.GAME.probabilities.normal or 1), card.ability.extra.denom_odds, "asa_time_sig")
+        local n, d = SMODS.get_probability_vars(card, card.ability.extra.num_odds, card.ability.extra.denom_odds, "asa_time_sig")
         return {vars = {n, d}}
     end,
     calculate = function(self, card, context)
         if context.repetition and context.cardarea == G.play and (context.other_card:get_id() == 4 or context.other_card:get_id() == 7) 
-        and SMODS.pseudorandom_probability(card, "time_sig", G.GAME.probabilities.normal, card.ability.extra.denom_odds, "asa_time_sig") then
+        and SMODS.pseudorandom_probability(card, "time_sig", card.ability.extra.num_odds, card.ability.extra.denom_odds, "asa_time_sig") then
             return {
                 repetitions = 1
             }

@@ -269,8 +269,8 @@ return {
 			},
 			j_asa_halberd = {
 				name = "Halberd",
-				text = {"When {C:attention}Boss Blind{} is selected",
-				"this joker gain {X:mult,C:white}X#2#{} Mult",
+				text = {"When {C:attention}Boss Blind{} is selected,",
+				"this joker gains {X:mult,C:white}X#2#{} Mult",
 				"for every {C:attention}Jack{} in your deck",
 				"{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult)",}
 			},
@@ -278,7 +278,9 @@ return {
 				name = "Pizza",
 				text = {"Copies the ability",
 				"of the {C:attention}Right-Most{} Joker",
-                "{C:red}Self-Destructs{} after {C:attention}8{C:inactive} (#1#){} Rounds"}
+                "{C:red}Self-destructs{} after",
+				"playing {C:attention}8{C:inactive} hands",
+				"{C:inactive}(Currently #1# hands left)"}
 			},
 			--Rare
 			j_asa_scrambled_eggs = {

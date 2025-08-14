@@ -271,15 +271,14 @@ SMODS.Joker({
 		}
 	end,
 
-	add_to_deck = function(self, card, from_debuff)
-		local asa = card.ability.extra
-		G.GAME.probabilities.normal = G.GAME.probabilities.normal - asa.odd_remove
+	calculate = function(self, card, context)
+		if context.mod_probability and not context.blueprint then
+			return {
+				numerator = context.numerator - card.ability.extra.odd_remove
+			}
+		end
 	end,
-	remove_from_deck = function(self, card, from_debuff)
-		local asa = card.ability.extra
-		G.GAME.probabilities.normal = G.GAME.probabilities.normal + asa.odd_remove
-	end,
-		in_pool = function(self, wawa, wawa2)
+	in_pool = function(self, wawa, wawa2)
 		if #SMODS.find_card("j_oops") > 0 then
 			return false
 		end
