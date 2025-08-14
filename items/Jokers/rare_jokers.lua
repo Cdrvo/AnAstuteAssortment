@@ -25,7 +25,7 @@ SMODS.Joker({
 	atlas = "asa_jokers",
 	pos = { x = 6, y = 0 },
 	rarity = 3,
-	bluepritnt_compat = true,
+	blueprint_compat = true,
 	config = {
 		extra = {
 			xmult = 1.4,
@@ -62,6 +62,7 @@ SMODS.Joker({
 	pos = { x = 3, y = 3 },
 	rarity = 3,
 	eternal_compat = true,
+	blueprint_compat = true,
     config = {
         extra = {
             xmult = 2
@@ -85,7 +86,7 @@ SMODS.Joker({
                 if v:get_id() == 13 then
                     play_cards[#play_cards+1] = v
                     card_count = card_count + 1
-                    print(#play_cards)
+                    -- print(#play_cards)
                 end
             end
 
@@ -93,14 +94,14 @@ SMODS.Joker({
                 for l, m in pairs(play_cards) do
                     if v == m then
                         card_count = card_count - 1
-                        print(card_count)
+                        -- print(card_count)
                     end
                 end
             end
 
             if card_count > 0 then
                 card.asa_trigger = true
-                print(card.asa_trigger)
+                -- print(card.asa_trigger)
             end
         end
         if context.individual and context.cardarea == G.play and card.asa_trigger then
@@ -123,6 +124,7 @@ SMODS.Joker({
 	pos = { x = 4, y = 3 },
 	rarity = 3,
 	eternal_compat = true,
+	blueprint_compat = true,
 	config = {
 		extra = {
 			xmult = 1.4,

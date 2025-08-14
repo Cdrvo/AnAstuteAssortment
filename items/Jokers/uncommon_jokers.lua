@@ -5,6 +5,7 @@ SMODS.Joker({
 	atlas = "asa_jokers",
 	pos = { x = 2, y = 0 },
 	perishable_compat = false,
+	blueprint_compat = true,
 	config = {
 		extra = {
 			chips = 0,
@@ -38,6 +39,7 @@ SMODS.Joker({
 	rarity = 2,
 	atlas = "asa_jokers",
 	pos = { x = 3, y = 0 },
+	blueprint_compat = true,
 	config = {
 		extra = {
 			dollars = 3,
@@ -154,6 +156,7 @@ SMODS.Joker({
 	rarity = 2,
 	atlas = "asa_jokers",
 	pos = { x = 0, y = 1 },
+	blueprint_compat = true,
 	config = {
 		extra = {
 			xmult = 1.5,
@@ -169,7 +172,6 @@ SMODS.Joker({
 			},
 		}
 	end,
-
 	calculate = function(self, card, context)
 		local asa = card.ability.extra
 		if context.joker_main then
@@ -192,6 +194,7 @@ SMODS.Joker({
 	rarity = 2,
 	atlas = "asa_jokers",
 	pos = { x = 5, y = 1 },
+	blueprint_compat = true,
 	config = {
 		extra = {
 			xmult = 1,
@@ -235,7 +238,7 @@ SMODS.Joker({
 })
 
 
-SMODS.Joker:take_ownership('oops',
+SMODS.Joker:take_ownership('j_oops',
     { 
 	in_pool = function(self, wawa, wawa2)
 		if #SMODS.find_card("j_asa_snake_eyes") > 0 then
@@ -291,6 +294,7 @@ SMODS.Joker({
 	rarity = 2,
 	atlas = "asa_jokers",
 	pos = { x = 2, y = 2 },
+	blueprint_compat = true,
 	config = {
 		extra = {
 			retriggers = 1,
@@ -362,7 +366,7 @@ SMODS.Joker({
 			},
 		}
 	end,
-
+	blueprint_compat = true,
 	calculate = function(self, card, context)
 		local asa = card.ability.extra
 		if context.before and not context.blueprint then
@@ -409,6 +413,7 @@ SMODS.Joker({
 	rarity = 2,
 	atlas = "asa_jokers",
 	pos = { x = 4, y = 2 },
+	blueprint_compat = true,
 	config = {
 		extra = {
 			xmult = 3,
@@ -461,6 +466,7 @@ SMODS.Joker({
 		},
 	},
 	perishable_compat = false,
+	blueprint_compat = true,
 	loc_vars = function(self, info_queue, card)
 		local asa = card.ability.extra
 		return {
@@ -515,7 +521,7 @@ SMODS.Joker({
 			},
 		}
 	end,
-
+	blueprint_compat = true,
 	calculate = function(self, card, context)
 		local asa = card.ability.extra
 		if context.before and not context.blueprint then
@@ -620,6 +626,7 @@ SMODS.Joker({
 	atlas = "asa_jokers",
 	pos = { x = 5, y = 3 },
 	eternal_compat = false,
+	blueprint_compat = true,
 	config = {
 		extra = {
 			timer = 8,
@@ -688,17 +695,17 @@ SMODS.Joker({
 				break
 			end
 		end
-		if right_most_e then
-			return right_most_e
-		else
-			return nil
-		end
 		if context.after and not context.blueprint then
 			if asa.timer > 1 then
 				asa.timer = asa.timer - 1
 			else
 				SMODS.destroy_cards(card)
 			end
+		end
+		if right_most_e then
+			return right_most_e
+		else
+			return nil
 		end
 	end,
 })
