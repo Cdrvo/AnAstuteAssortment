@@ -33,6 +33,7 @@ SMODS.Joker({
 	},
 	loc_vars = function(self, info_queue, card)
 		local asa = card.ability.extra
+		table.insert(info_queue, G.P_CENTERS.m_stone)
 		return {
 			vars = { asa.xmult },
 		}
@@ -132,6 +133,7 @@ SMODS.Joker({
 	},
 	loc_vars = function(self, info_queue, card)
 		local asa = card.ability.extra
+		table.insert(info_queue, G.P_CENTERS.m_wild)
 		return {
 			vars = { asa.xmult },
 		}

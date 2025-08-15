@@ -54,8 +54,8 @@ SMODS.Joker {
 }
 SMODS.Joker {
     key = "tuplets",
-    atlas = "asa_jokers",
-    pos = {x = 2, y = 1},
+    atlas = "tuplets_new",
+    pos = {x = 0, y = 0},
     rarity = 1,
     cost = 5,
     blueprint_compat = true,

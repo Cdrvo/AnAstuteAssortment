@@ -204,12 +204,13 @@ SMODS.Joker({
 	},
 	loc_vars = function(self, info_queue, card)
 		local asa = card.ability.extra
+		local num, denom = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "ds_al_coda")
 		return {
 			vars = {
 				asa.xmult,
 				asa.xmultg,
-				(G.GAME.probabilities.normal or 1),
-				asa.odds,
+				num,
+				denom,
 			},
 		}
 	end,
@@ -217,7 +218,7 @@ SMODS.Joker({
 	calculate = function(self, card, context)
 		local asa = card.ability.extra
 		if context.before and not context.blueprint then
-			if to_big(G.GAME.hands[context.scoring_name].played_this_round) > to_big(0) then
+			if G.GAME.hands[context.scoring_name] and (to_big(G.GAME.hands[context.scoring_name].played_this_round) > to_big(1)) then
 				card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_upgrade_ex") })
 				asa.xmult = asa.xmult + asa.xmultg
 			end
@@ -229,7 +230,7 @@ SMODS.Joker({
 		end
 
 		if context.setting_blind and not context.blueprint and not G.GAME.blind.boss then
-			if pseudorandom("ds_al_cola") < G.GAME.probabilities.normal / asa.odds then
+			if SMODS.pseudorandom_probability(card, "ds_al_coda", 1, card.ability.extra.odds) then
 				asa.xmult = 1
 				card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_reset") })
 			end
@@ -301,6 +302,8 @@ SMODS.Joker({
 	},
 	loc_vars = function(self, info_queue, card)
 		local asa = card.ability.extra
+		table.insert(info_queue, G.P_CENTERS.m_gold)
+		table.insert(info_queue, G.P_CENTERS.m_steel)
 		return {
 			vars = {
 				asa.retriggers,

@@ -4,11 +4,12 @@ return {
 			c_asa_crystals = {
 				name = "Crystals",
 				text = {
-					"Creates a random {C:attention}Glass Card{}",
-					"for every {C:attention}Glass Card{}",
-					"destroyed by its own",
-                    "effect this run",
-                    "{C:inactive}(Will create #1# cards){}"
+					"Adds a random {C:attention}Glass Card{}",
+					"to deck for every {C:attention}Glass Card{}",
+					"destroyed by its own effect",
+                    "{C:inactive}(Will create {C:attention}#1#{C:inactive} cards){}",
+					"{C:inactive}(Resets the number of cards",
+					"{C:inactive}created when used)"
 				},
 			},
 			c_asa_altar = {
@@ -26,8 +27,8 @@ return {
 				name = "Sage",
 				text = {
 					"If your deck is below",
-					"{C:attention}#1#{} cards, add playing",
-					"cards with random {C:attention}Editions{}",
+					"{C:attention}#1#{} cards, add {C:attention}playing",
+					"{C:attention}cards{} with random {C:attention}Editions{}",
 					"to your deck until",
 					"your deck has {C:attention}#1#{} cards",
 					"{C:inactive}(Will add {C:attention}#2#{C:inactive} cards){}"
@@ -37,7 +38,7 @@ return {
 				name = "Pentagram",
 				text = {
 					"Destroy {C:attention}#1#{} random card",
-					"in your hand and create",
+					"in your hand, add",
 					"{C:attention}#2# Gold 6{}s",
 				},
 			},
@@ -45,7 +46,7 @@ return {
 				name = "Charm",
 				text = {
 					"Destroy {C:attention}#1#{} random card",
-					"in your hand and create",
+					"in your hand, add",
 					"{C:attention}#2# Lucky 7{}s",
 				},
 			},
@@ -53,7 +54,7 @@ return {
 				name = "Music",
 				text = {
 					"Destroy {C:attention}all{} cards in",
-					"your hand, and add",
+					"your hand, add",
 					"{C:dark_edition}Foil{} or {C:dark_edition}Holographic{}",
 					"to all Jokers",
 				},
@@ -61,10 +62,10 @@ return {
 			c_asa_voodoo_doll = {
 				name = "Voodoo Doll",
 				text = {
-					"Create a random {C:attention}face{}",
+					"Adds a random {C:attention}face{}",
 					"{C:attention}card{} with a random",
 					"{C:attention}Enhancement{}, {C:attention}Seal{}",
-					"and {C:attention}Edition{}",
+					"and {C:attention}Edition{} to deck",
 				},
 			},
 		},
@@ -75,7 +76,7 @@ return {
                 text = {
                     "{C:attention}Straights{} can be made",
                     "with {C:attention}Aces{} in the middle",
-					"{C:inactive}(Ex: Q K A 2 3)"
+					"{C:inactive}(ex: Q K A 2 3)"
                 }
             },
             j_asa_celestial_sheet_music = {
@@ -164,7 +165,7 @@ return {
 			j_asa_spare_dress_shirt = {
 				name = "Spare Dress Shirt",
 				text = {
-					"This Joker gives {C:money}+$#1#{}",
+					"This Joker gives {C:money}$#1#{}",
 					"if played hand contains a",
 					"{C:attention}Three of a Kind",
 				},
@@ -173,7 +174,7 @@ return {
 				name = "Rising Sun Casino",
 				text = {
 					"If played hand is a {C:attention}Two Pair",
-					"with no {C:hears}Heart{} card,",
+					"with no {C:hearts}Heart{} card,",
 					"it is considered a {C:attention}Full House",
 				},
 			},
@@ -181,18 +182,18 @@ return {
 				name = "Klein Bottle",
 				text = {
 					"If played hand contains a scoring",
-					"leftmost {C:attention}Ace{} and a rightmost {C:attention}2",
-					"all the other cards",
-					"become {C:attention}Glass{}"
+					"leftmost {C:attention}Ace{} and a rightmost {C:attention}2,",
+					"all cards become {C:attention}Glass{}",
+					"after they score"
 				},
 			},
 			j_asa_attorney = {
 				name = "Attorney",
 				text = {
-					"When a hand is played",
-					"{C:chips}+#2#{} Chips if there are more",
-					"{C:blue}hands{} than {C:red}discards{}.",
-					"{X:mult,C:white}X#1#{} Mult otherwise",
+					"When a hand is played,",
+					"{C:chips}+#2#{} Chips if you have more",
+					"{C:blue}hands{} than {C:red}discards{}",
+					"Otherwise, {X:mult,C:white}X#1#{} Mult",
 				},
 			},
 			j_asa_ds_al_cola = {
@@ -200,11 +201,11 @@ return {
 				text = {
 					"This joker gains ",
 					"{X:mult,C:white}X#2#{} Mult",
-					"everytime a poker hand",
-					"is repeated this round.",
-					"has a {C:green}#3# in #4#{} Chance to",
+					"every time a poker hand",
+					"is repeated this round",
+					"Has a {C:green}#3# in #4#{} chance to",
 					"{C:red}reset{} while entering a",
-					"small or big blind",
+					"{C:attention}Small Blind{} or {C:attention}Big Blind{}",
 					"{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult)",
 				},
 			},
@@ -221,26 +222,27 @@ return {
 				text = {
 					"Retrigger all played",
 					"{C:attention}Steel{} and {C:attention}Gold{} cards",
-					"or {C:attention}Other Enhancements{} held in hand {C:attention}#1#{} time",
-					"If the retriggered card is a {C:attention}6{}",
-					"trigger it {C:attention}1{} extra time",
+					"or other Enhanced cards held in hand {C:attention}#1#{} time",
+					"If the retriggered card is a {C:attention}6{},",
+					"trigger it {C:attention}1{} additional time",
 				},
 			},
 			j_asa_power_of_seven = {
 				name = "The Power of Seven",
 				text = {
-					"Create a {C:dark_edition}Spectral{} card",
-					"for every {C:attention}7 {C:inactive}(#1#){} hands played",
-					"with atleast one scoring {C:attention}7{}",
+					"Create a {C:spectral}Spectral{} card",
+					"for every {C:attention}7{} hands played",
+					"with at least one scoring {C:attention}7{}",
 					"{C:inactive}(Must have room)",
+					"{C:inactive}(Currently #1# hands left)"
 				},
 			},
 			j_asa_jackpot = {
 				name = "Jackpot!",
 				text = {
-					"Gives {C:money}+$#2#{} and",
+					"Gives {C:money}$#2#{} and",
 					"{X:mult,C:white}X#1#{} Mult",
-					"if played hand has atleast",
+					"if played hand has at least",
 					"three scoring {C:attention}7{}s",
 				},
 			},
@@ -258,7 +260,7 @@ return {
 				name = "Niner Niner",
 				text = {
 					"{X:mult,C:white}X#1#{} Mult",
-					"if scoring hand has atleast",
+					"if scoring hand has at least",
 					"two {C:attention}9{}s",
 				},
 			},
@@ -270,14 +272,14 @@ return {
 			j_asa_halberd = {
 				name = "Halberd",
 				text = {"When {C:attention}Boss Blind{} is selected,",
-				"this joker gains {X:mult,C:white}X#2#{} Mult",
+				"this Joker gains {X:mult,C:white}X#2#{} Mult",
 				"for every {C:attention}Jack{} in your deck",
 				"{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult)",}
 			},
 			j_asa_pizza = {
 				name = "Pizza",
 				text = {"Copies the ability",
-				"of the {C:attention}Right-Most{} Joker",
+				"of rightmost {C:attention}Joker{}",
                 "{C:red}Self-destructs{} after",
 				"playing {C:attention}8{C:inactive} hands",
 				"{C:inactive}(Currently #1# hands left)"}
@@ -303,7 +305,7 @@ return {
 				name = "Check",
 				text = {
 					"If played hand contains",
-					"a {C:red}Non-Scoring{C:attention} King",
+					"a {C:red}non-scoring{C:attention} King,",
 					"scored {C:attention}Queens{} give",
 					"{X:mult,C:white}X#1#{} Mult",
 				},
@@ -313,8 +315,8 @@ return {
 				text = {
 					"Played {C:attention}Wild Cards{}",
 					"give {X:mult,C:white}X#1#{} Mult",
-					"when scored.",
-					"{C:attention}Wild Cards{} Cannot",
+					"when scored",
+					"{C:attention}Wild Cards{} cannot",
 					"be debuffed",
 				},
 			},

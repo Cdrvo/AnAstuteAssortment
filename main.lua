@@ -12,7 +12,12 @@ SMODS.Atlas { -- joker atlas
     py = 95,
     path = "jokers.png"
 }
-
+SMODS.Atlas {
+	key = "tuplets_new",
+	px = 71,
+	py = 95,
+	path = "Tuplets.png"
+}
 
 to_big = to_big or function(x)
 	return x
