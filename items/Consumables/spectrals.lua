@@ -278,7 +278,7 @@ SMODS.Consumable {
     end,
     hidden = true,
     soul_set = "Playing Card",
-    soul_rate = 0.9,
+    soul_rate = 0.003,
     use = function(self, card, area, copier)
         G.deck:change_size(1)
         local ranks = {"K","Q","J"}
