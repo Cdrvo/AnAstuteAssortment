@@ -287,7 +287,6 @@ SMODS.Joker({
 	end,
 })
 
-local retrigger_cards = {}
 SMODS.Joker({
 	key = "six_uational",
 	cost = 6,
@@ -313,37 +312,29 @@ SMODS.Joker({
 
 	calculate = function(self, card, context)
 		local asa = card.ability.extra
-		if context.before and not context.blueprint then
-			for k, v in pairs(G.hand.cards) do
-				if v.ability.set == "Enhanced" then
-					if not SMODS.has_enhancement(v, "m_steel") and not SMODS.has_enhancement(v, "m_gold") then
-						retrigger_cards[#retrigger_cards + 1] = v
-					end
-				end
-			end
-
-			for k, v in pairs(context.scoring_hand) do
-				if SMODS.has_enhancement(v, "m_steel") or SMODS.has_enhancement(v, "m_gold") then
-					retrigger_cards[#retrigger_cards + 1] = v
-				end
-			end
-		end
-
 		if context.repetition then
-			for k, v in pairs(retrigger_cards) do
-				if context.other_card == v and context.other_card:get_id() == 6 then
+			if context.cardarea == G.hand and next(SMODS.get_enhancements(context.other_card))
+			and not SMODS.has_enhancement(context.other_card, "m_gold") and not SMODS.has_enhancement(context.other_card, "m_steel") then
+				if context.other_card:get_id() == 6 then
 					return {
-						repetitions = asa.retriggers + 1,
+						repetitions = asa.retriggers + 1
 					}
-				elseif context.other_card == v then
+				else
 					return {
-						repetitions = asa.retriggers,
+						repetitions = asa.retriggers
+					}
+				end
+			elseif SMODS.has_enhancement(context.other_card, "m_gold") or SMODS.has_enhancement(context.other_card, "m_steel") then
+				if context.other_card:get_id() == 6 then
+					return {
+						repetitions = asa.retriggers + 1
+					}
+				else
+					return {
+						repetitions = asa.retriggers
 					}
 				end
 			end
-		end
-		if context.final_scoring_step then
-			retrigger_cards = {}
 		end
 	end,
 })

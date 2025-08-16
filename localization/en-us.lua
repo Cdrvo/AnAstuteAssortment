@@ -222,7 +222,7 @@ return {
 				text = {
 					"Retrigger all played",
 					"{C:attention}Steel{} and {C:attention}Gold{} cards",
-					"or other Enhanced cards held in hand {C:attention}#1#{} time",
+					"or other {C:attention}Enhanced{} cards held in hand {C:attention}#1#{} time",
 					"If the retriggered card is a {C:attention}6{},",
 					"trigger it {C:attention}1{} additional time",
 				},
@@ -281,7 +281,7 @@ return {
 				text = {"Copies the ability",
 				"of rightmost {C:attention}Joker{}",
                 "{C:red}Self-destructs{} after",
-				"playing {C:attention}8{C:inactive} hands",
+				"playing {C:attention}8{} hands",
 				"{C:inactive}(Currently #1# hands left)"}
 			},
 			--Rare
