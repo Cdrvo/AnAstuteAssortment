@@ -199,13 +199,12 @@ return {
 			j_asa_ds_al_cola = {
 				name = "D.S. al Coda",
 				text = {
-					"This joker gains ",
-					"{X:mult,C:white}X#2#{} Mult",
-					"every time a poker hand",
-					"is repeated this round",
-					"Has a {C:green}#3# in #4#{} chance to",
-					"{C:red}reset{} while entering a",
-					"{C:attention}Small Blind{} or {C:attention}Big Blind{}",
+					"This Joker gains {X:mult,C:white}X#2#{} Mult",
+					"after playing a",
+					"{C:attention}poker hand{} that has",
+					"been played this round",
+					"{C:red}Resets{} when entering",
+					"a {C:attention}Small Blind{}",
 					"{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult)",
 				},
 			},
@@ -231,7 +230,7 @@ return {
 				name = "The Power of Seven",
 				text = {
 					"Create a {C:spectral}Spectral{} card",
-					"for every {C:attention}7{} hands played",
+					"for every {C:attention}4{} hands played",
 					"with at least one scoring {C:attention}7{}",
 					"{C:inactive}(Must have room)",
 					"{C:inactive}(Currently #1# hands left)"
@@ -240,8 +239,7 @@ return {
 			j_asa_jackpot = {
 				name = "Jackpot!",
 				text = {
-					"Gives {C:money}$#2#{} and",
-					"{X:mult,C:white}X#1#{} Mult",
+					"Gives {X:mult,C:white}X#1#{} Mult",
 					"if played hand has at least",
 					"three scoring {C:attention}7{}s",
 				},

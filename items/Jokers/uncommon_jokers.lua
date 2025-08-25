@@ -62,46 +62,44 @@ SMODS.Joker({
 	end,
 })
 
-SMODS.Joker({
-	key = "rising_sun_casino",
-	cost = 6,
-	rarity = 2,
-	atlas = "asa_jokers",
-	pos = { x = 4, y = 0 },
-	blueprint_compat = false,
-	config = {
-		extra = {},
-	},
-	loc_vars = function(self, info_queue, card)
-		local asa = card.ability.extra
-		return {
-			vars = {},
-		}
-	end,
-
-	calculate = function(self, card, context)
-		local asa = card.ability.extra
-		if context.evaluate_poker_hand and context.scoring_name == "Two Pair" and not context.blueprint then
-			card.asa_trigger = true
-			for k, v in pairs(G.hand.highlighted) do
-				if v:is_suit("Hearts") then
-					card.asa_trigger = nil
-				end
-			end
-			for k, v in pairs(G.play.cards) do
-				if v:is_suit("Hearts") then
-					card.asa_trigger = nil
-				end
-			end
-			if card.asa_trigger and not context.blueprint then
-				return {
-					replace_scoring_name = "Full House",
-					replace_display_name = "Full House",
-				}
-			end
-		end
-	end,
-})
+SMODS.Joker {
+    key = "indef_article",
+    atlas = "asa_jokers",
+    pos = {x = 1, y = 2},
+    rarity = 2,
+    cost = 5,
+    blueprint_compat = true,
+    config = {extra = {retriggers = 1, has_unscoring_ace = false}},
+    loc_vars = function(self, info_queue, card)
+        return {vars = {card.ability.extra.retriggers}}
+    end,
+    calculate = function(self, card, context)
+        if context.before then
+            for _, c in ipairs(context.full_hand) do
+                if c:get_id() == 14 then
+                    local in_scoring = false
+                    for _, c2 in ipairs(context.scoring_hand) do
+                        if c == c2 then
+                            in_scoring = true
+                            break
+                        end
+                    end
+                    if not in_scoring then
+                        card.ability.extra.has_unscoring_ace = true
+                    end
+                end
+            end
+        end
+        if card.ability.extra.has_unscoring_ace and context.repetition and context.cardarea == G.play then
+            return {
+                repetitions = card.ability.extra.retriggers
+            }
+        end
+        if context.after then
+            card.ability.extra.has_unscoring_ace = false
+        end
+    end
+}
 
 SMODS.Joker({
 	key = "klein_bottle",
@@ -150,47 +148,11 @@ SMODS.Joker({
 	end,
 })
 
-SMODS.Joker({
-	key = "attorney",
-	cost = 5,
-	rarity = 2,
-	atlas = "asa_jokers",
-	pos = { x = 0, y = 1 },
-	blueprint_compat = true,
-	config = {
-		extra = {
-			xmult = 1.5,
-			chips = 44,
-		},
-	},
-	loc_vars = function(self, info_queue, card)
-		local asa = card.ability.extra
-		return {
-			vars = {
-				asa.xmult,
-				asa.chips,
-			},
-		}
-	end,
-	calculate = function(self, card, context)
-		local asa = card.ability.extra
-		if context.joker_main then
-			if G.GAME.current_round.discards_left >= G.GAME.current_round.hands_left then
-				return {
-					xmult = asa.xmult,
-				}
-			else
-				return {
-					chips = asa.chips,
-				}
-			end
-		end
-	end,
-})
+
 
 SMODS.Joker({
 	key = "ds_al_cola",
-	cost = 6,
+	cost = 7,
 	rarity = 2,
 	atlas = "asa_jokers",
 	pos = { x = 5, y = 1 },
@@ -198,19 +160,15 @@ SMODS.Joker({
 	config = {
 		extra = {
 			xmult = 1,
-			xmultg = 0.3,
-			odds = 14,
+			xmultg = 0.2,
 		},
 	},
 	loc_vars = function(self, info_queue, card)
 		local asa = card.ability.extra
-		local num, denom = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "ds_al_coda")
 		return {
 			vars = {
 				asa.xmult,
 				asa.xmultg,
-				num,
-				denom,
 			},
 		}
 	end,
@@ -229,11 +187,9 @@ SMODS.Joker({
 			}
 		end
 
-		if context.setting_blind and not context.blueprint and not G.GAME.blind.boss then
-			if SMODS.pseudorandom_probability(card, "ds_al_coda", 1, card.ability.extra.odds) then
-				asa.xmult = 1
-				card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_reset") })
-			end
+		if context.setting_blind and not context.blueprint and G.GAME.blind:get_type() == "Small" then
+			asa.xmult = 1
+			card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_reset") })
 		end
 	end,
 })
@@ -348,7 +304,7 @@ SMODS.Joker({
 	pos = { x = 3, y = 2 },
 	config = {
 		extra = {
-			timer = 7,
+			timer = 4,
 		},
 	},
 	loc_vars = function(self, info_queue, card)
@@ -394,7 +350,7 @@ SMODS.Joker({
 					area = G.consumeables,
 				})
 				juice_seven = true
-				asa.timer = 7
+				asa.timer = 4
 			end
 		end
 	end,
@@ -410,7 +366,6 @@ SMODS.Joker({
 	config = {
 		extra = {
 			xmult = 3,
-			dollars = 4,
 			sevens = 0,
 		},
 	},
@@ -419,7 +374,6 @@ SMODS.Joker({
 		return {
 			vars = {
 				asa.xmult,
-				asa.dollars,
 				asa.sevens,
 			},
 		}
@@ -439,7 +393,6 @@ SMODS.Joker({
 		if context.joker_main and asa.sevens >= 3 then
 			return {
 				xmult = asa.xmult,
-				dollars = asa.dollars,
 			}
 		end
 	end,
@@ -537,35 +490,6 @@ SMODS.Joker({
 	end,
 })
 
-local suitsold = Card.is_suit
-function Card:is_suit(suit, bypass_debuff, flush_calc)
-	if #SMODS.find_card("j_asa_of_all_trades") >= 1 and self:get_id() == 11 then
-		return true
-	end
-	return suitsold(self, suit, bypass_debuff, flush_calc)
-end
-
-SMODS.Joker({
-	key = "of_all_trades",
-	cost = 7,
-	rarity = 2,
-	atlas = "asa_jokers",
-	pos = { x = 1, y = 3 },
-	blueprint_compat = false,
-	config = {
-		extra = {},
-	},
-	loc_vars = function(self, info_queue, card)
-		local asa = card.ability.extra
-		return {
-			vars = {},
-		}
-	end,
-
-	calculate = function(self, card, context)
-		local asa = card.ability.extra
-	end,
-})
 
 SMODS.Joker({
 	key = "halberd",
