@@ -66,7 +66,7 @@ SMODS.Joker({
 	blueprint_compat = true,
     config = {
         extra = {
-            xmult = 2
+            xmult = 1.5
         }
     },
 	loc_vars = function(self, info_queue, card)
