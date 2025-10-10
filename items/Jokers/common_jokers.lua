@@ -109,7 +109,7 @@ SMODS.Joker {
     atlas = "asa_jokers",
     pos = {x = 4, y = 1},
     rarity = 1,
-    cost = 4,
+    cost = 6,
     blueprint_compat = true,
     config = {extra = {chips = 77}},
     loc_vars = function(self, info_queue, card)
