@@ -70,6 +70,16 @@ function ASA.level_up_hand(hand, level)
 end
 
 
+-- Hooks
+
+local igo = Game.init_game_object
+Game.init_game_object = function(self)
+	local ret = igo(self)
+	ret.asa_glass_broken = 0
+	
+	return ret
+end
+
 --Jokers
 SMODS.load_file("items/Jokers/common_jokers.lua")()
 SMODS.load_file("items/Jokers/uncommon_jokers.lua")()
