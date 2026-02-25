@@ -116,8 +116,7 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.individual and context.other_card:get_id() == 7 then
-                return {chips = card.ability.extra.chips}
-            end
+            return {chips = card.ability.extra.chips}
         end
     end
 }
